@@ -10,7 +10,7 @@ from itpe.dreamwidth import render_user_links
 
 try:
     text_type = unicode
-except ImportError:  # Python 3.x
+except NameError:  # Python 3.x
     text_type = str
 
 
