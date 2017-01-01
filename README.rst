@@ -22,18 +22,18 @@ or:
 Usage
 -----
 
-Varies from year to year.  A good starting point is:
+For the 2013 version, you need to create a subdirectory of your home directory
+called ``Podfic``.  (For example, ``/Users/alexwlchan/Podfic``.)
 
-.. code-block:: console
-
-   itpe --help
-
-after you've installed the scripts.
+Save the CSV file of all the entires as ``itpe-treats.csv`` in this directory,
+then run ``itpe``.  This will create a new file called ``itpe-treats.html`` in
+the same directory.  This file contains the HTML to use for the master post.
 
 Support
 -------
 
-If you are having issues, contact Alex Chan (`alex@alexwlchan.net <mailto:alex@alexwlchan.net>`_).
+If you are having issues, contact Alex Chan
+(`alex@alexwlchan.net <mailto:alex@alexwlchan.net>`_).
 
 License
 -------
