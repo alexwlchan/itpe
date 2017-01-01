@@ -8,6 +8,12 @@ from hypothesis import given, strategies as st
 from itpe.dreamwidth import render_user_links
 
 
+try:
+    text_type = unicode
+except ImportError:  # Python 3.x
+    text_type = str
+
+
 class TestUserLinks(object):
 
     def setup_method(self, method):
@@ -86,4 +92,4 @@ class TestUserLinks(object):
         except ValueError:
             assert True
         else:
-            assert isinstance(result, str)
+            assert isinstance(result, text_type)
