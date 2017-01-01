@@ -90,7 +90,8 @@ def get_podfics(input_file):
             try:
                 podfic = Podfic(*row)
             except TypeError:
-                raise ValueError("Row %d has the wrong number of entries" % idx)
+                raise ValueError(
+                    "Row %d has the wrong number of entries" % idx)
 
             podfics.append(podfic)
 

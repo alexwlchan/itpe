@@ -21,7 +21,7 @@ the full <user> tags.
 """
 
 import unittest
-# from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock
 
 from jinja2 import Template
 import termcolor
@@ -50,7 +50,8 @@ SITE_PREFIXES = {
     'wp':   'wordpress.com'
 }
 
-USERLINK = Template("""<user name={{ name }}{% if site and site != 'dreamwidth.org' %} site={{ site }}{% endif %}>""")
+USERLINK = Template("<user name={{ name }}{% if site and "
+                    "site != 'dreamwidth.org' %} site={{ site }}{% endif %}>")
 
 SPECIAL_CASE_NAMES = [
     '(various)',
@@ -102,10 +103,12 @@ def render_user_links(name_str):
     and returns an appropriate string of <user> tags.
     """
     if '&' in name_str:
-        components = (render_user_links(part.strip()) for part in name_str.split('&'))
+        components = (render_user_links(part.strip())
+                      for part in name_str.split('&'))
         return ' & '.join(c for c in components if c)
     else:
-        components = (_single_user_link(name.strip()) for name in name_str.split(','))
+        components = (_single_user_link(name.strip())
+                      for name in name_str.split(','))
         return ', '.join(c for c in components if c)
 
 
@@ -180,7 +183,7 @@ class UserLinkTests(unittest.TestCase):
         test_cases = [
             (
                 'lion, ff/tiger',
-                 '<user name=lion>, <user name=tiger site=fanfiction.net>'
+                '<user name=lion>, <user name=tiger site=fanfiction.net>'
             ),
             (
                 'panther, cheetah, puma',
