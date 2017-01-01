@@ -10,6 +10,10 @@ cache:
 
 env:
   matrix:
+    - TASK=py27
+    - TASK=py33
+    - TASK=py34
+    - TASK=py35
     - TASK=lint
 
 script:

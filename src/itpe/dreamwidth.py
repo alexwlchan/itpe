@@ -21,7 +21,7 @@ the full <user> tags.
 """
 
 import unittest
-from unittest.mock import patch, MagicMock
+from mock import patch, MagicMock
 
 from jinja2 import Template
 import termcolor

@@ -4,4 +4,6 @@ build
 dist
 
 # Test output
+.cache
+.coverage
 .tox
