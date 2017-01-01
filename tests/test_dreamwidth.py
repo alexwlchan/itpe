@@ -58,7 +58,7 @@ class TestUserLinks(object):
          '<user name=fish>, <user name=squid> & <user name=clam>'),
     ])
     def test_rendering_user_string(self, user_str, expected):
-        """Strings with spaces or special phrases are skipped."""
+        """User strings are rendered correctly."""
         assert render_user_links(user_str) == expected
 
     @pytest.mark.parametrize('bad_user_str', [
