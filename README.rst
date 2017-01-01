@@ -22,12 +22,7 @@ or:
 Usage
 -----
 
-For the 2013 version, you need to create a subdirectory of your home directory
-called ``Podfic``.  (For example, ``/Users/alexwlchan/Podfic``.)
-
-Save the CSV file of all the entires as ``itpe-treats.csv`` in this directory,
-then run ``itpe``.  This will create a new file called ``itpe-treats.html`` in
-the same directory.  This file contains the HTML to use for the master post.
+For the 2014 version, run ``itpe --help`` to get a usage message.
 
 Support
 -------

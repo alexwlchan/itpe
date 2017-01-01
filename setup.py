@@ -18,7 +18,7 @@ long_description = codecs.open(README, encoding='utf-8').read()
 
 setup(
     name='itpe',
-    version='2013.0',
+    version='2014.0',
     description='Scripts for generating the master post for ITPE (the Informal Twitter Podfic Exchange)',
     long_description=long_description,
     url='https://github.com/alexwlchan/itpe',
@@ -40,7 +40,9 @@ setup(
     ],
     packages=find_packages(SOURCE),
     package_dir={'': SOURCE},
-    install_requires=[],
+    install_requires=[
+        'jinja2'
+    ],
 
     # To provide executable scripts, use entry points in preference to the
     # "scripts" keyword. Entry points provide cross-platform support and allow
