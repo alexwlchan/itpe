@@ -3,6 +3,7 @@
 
 from mock import patch, MagicMock
 import pytest
+from hypothesis import given, strategies as st
 
 from itpe.dreamwidth import render_user_links
 
@@ -75,3 +76,14 @@ class TestUserLinks(object):
         """Malformed strings trigger a ValueError."""
         with pytest.raises(ValueError):
             render_user_links(bad_user_str)
+
+    @given(st.text())
+    def test_render_is_either_str_or_error(self, user_str):
+        """Calling `render_user_links` either returns a string or raises
+        `ValueError`."""
+        try:
+            result = render_user_links(user_str)
+        except ValueError:
+            assert True
+        else:
+            assert isinstance(result, str)
