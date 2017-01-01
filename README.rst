@@ -22,7 +22,7 @@ or:
 Usage
 -----
 
-For the 2015 version, run ``itpe --help`` to get a usage message.
+For the 2016 version, run ``itpe --help`` to get a usage message.
 
 Support
 -------

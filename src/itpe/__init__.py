@@ -44,7 +44,6 @@ HEADINGS = [
     'length',
     'mp3_link',
     'podbook_link',
-    'ao3_link',
     'podbook_compiler',
 ]
 
