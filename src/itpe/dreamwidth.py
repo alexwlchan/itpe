@@ -20,8 +20,12 @@ This file contains a function for turning these templae strings into
 the full <user> tags.
 """
 
+from __future__ import unicode_literals
+
 from jinja2 import Template
 import termcolor
+
+from .compat import text_type
 
 
 SITE_PREFIXES = {
@@ -66,13 +70,13 @@ def _single_user_link(user_str):
 
     if not user_str.strip():
         warn("Skipping empty user string.")
-        return ''
+        return text_type('')
 
     # If there's a space in the user string, then we drop through a raw
     # string (e.g. "the podfic community")
     if (' ' in user_str) or (user_str.lower() in SPECIAL_CASE_NAMES):
         warn("Skipping user string '%s'" % user_str)
-        return user_str
+        return text_type(user_str)
 
     # If there aren't any slashes, then treat it as a Dreamwidth user
     if '/' not in user_str:
@@ -100,11 +104,11 @@ def render_user_links(name_str):
     Takes a string of names, possibly separated with commas or ampersands,
     and returns an appropriate string of <user> tags.
     """
-    if '&' in name_str:
+    if u'&' in name_str:
         components = (render_user_links(part.strip())
                       for part in name_str.split('&'))
-        return ' & '.join(c for c in components if c)
+        return u' & '.join(c for c in components if c)
     else:
         components = (_single_user_link(name.strip())
                       for name in name_str.split(','))
-        return ', '.join(c for c in components if c)
+        return u', '.join(c for c in components if c)

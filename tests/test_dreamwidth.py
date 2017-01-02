@@ -1,17 +1,14 @@
 # -*- encoding: utf-8
 """Unit tests for itpe.dreamwidth."""
 
+from __future__ import unicode_literals
+
 from mock import patch, MagicMock
 import pytest
 from hypothesis import given, strategies as st
 
+from itpe.compat import text_type
 from itpe.dreamwidth import render_user_links
-
-
-try:
-    text_type = unicode
-except NameError:  # Python 3.x
-    text_type = str
 
 
 class TestUserLinks(object):
