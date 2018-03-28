@@ -121,33 +121,6 @@ class UserLinkTests(unittest.TestCase):
     def tearDown(self):
         self.cprint.stop()
 
-    def assert_correct_expansion(self, short_string, expected):
-        self.assertEqual(render_user_links(short_string), expected)
-
-    def assert_correct_expansions(self, test_cases):
-        for user_str, expected in test_cases:
-            self.assertEqual(render_user_links(user_str), expected)
-
-    def test_skipped_strings(self):
-        """Strings with spaces or special phrases are skipped."""
-        test_cases = [
-            (' ', ''),
-            ('fish cakes', 'fish cakes'),
-            ('anonymous', 'anonymous'),
-            ('anonymous cat', 'anonymous cat'),
-        ]
-        self.assert_correct_expansions(test_cases)
-
-    def test_defaulted_strings(self):
-        """Strings without a site prefix default to Dreamwidth."""
-        test_cases = [
-            ('dog', '<user name=dog>'),
-            ('fish', '<user name=fish>'),
-            ('horse', '<user name=horse>'),
-            ('gerbil', '<user name=gerbil>'),
-        ]
-        self.assert_correct_expansions(test_cases)
-
     def test_invalid_strings(self):
         """Strings with >1 slash raise a ValueError."""
         for bad_string in ['parrot/budgie/parakeet', 'cat///mouse']:
@@ -159,66 +132,6 @@ class UserLinkTests(unittest.TestCase):
         for bad_string in ['nope/turtle', 'bad/tortoise', '/reptile']:
             with self.assertRaises(ValueError):
                 render_user_links(bad_string)
-
-    def test_dreamwidth_strings(self):
-        """Strings with the dw/ prefix don't include a site= attribute."""
-        test_cases = [
-            ('dw/ferret', '<user name=ferret>'),
-            ('dw/rabbit', '<user name=rabbit>'),
-            ('dw/bunny', '<user name=bunny>'),
-        ]
-        self.assert_correct_expansions(test_cases)
-
-    def test_other_strings(self):
-        """Strings with non-dw/ prefixes include a site= attribute."""
-        test_cases = [
-            ('tw/snake', '<user name=snake site=twitter.com>'),
-            ('ao3/newt', '<user name=newt site=archiveofourown.org>'),
-            ('tum/iguana', '<user name=iguana site=tumblr.com>'),
-        ]
-        self.assert_correct_expansions(test_cases)
-
-    def test_commas_strings(self):
-        """Comma-separated strings render correctly."""
-        test_cases = [
-            (
-                'lion, ff/tiger',
-                '<user name=lion>, <user name=tiger site=fanfiction.net>'
-            ),
-            (
-                'panther, cheetah, puma',
-                '<user name=panther>, <user name=cheetah>, <user name=puma>'
-            ),
-            (
-                'lj/lynx,',
-                '<user name=lynx site=livejournal.com>'
-            ),
-        ]
-        self.assert_correct_expansions(test_cases)
-
-    def test_amp_strings(self):
-        """Ampersand-separated strings render correctly."""
-        test_cases = [
-            (
-                'rhino &',
-                '<user name=rhino>'
-            ),
-            (
-                'pin/hippo & elephant',
-                '<user name=hippo site=pinboard.in> & <user name=elephant>'
-            ),
-        ]
-        self.assert_correct_expansions(test_cases)
-
-    def test_mixed_strings(self):
-        """Strings with commas and ampersands render correctly."""
-        test_cases = [
-            (
-                'fish, squid & clam',
-                '<user name=fish>, <user name=squid> & <user name=clam>'
-            ),
-        ]
-        self.assert_correct_expansions(test_cases)
 
 
 if __name__ == '__main__':
