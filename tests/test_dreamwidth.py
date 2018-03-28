@@ -42,3 +42,18 @@ from itpe import dreamwidth as dreamwidth_usernames
 ])
 def test_render_user_links(input_str, expected):
     assert dreamwidth_usernames.render_user_links(input_str) == expected
+
+
+@pytest.mark.parametrize('bad_input_str', [
+    # Strings with >1 slash
+    'parrot/budgie/parakeet',
+    'cat///mouse',
+
+    # Strings with an unknown site prefix
+    'nope/turtle',
+    'bad/tortoise',
+    '/reptile',
+])
+def test_bad_strings_are_valueerror(bad_input_str):
+    with pytest.raises(ValueError):
+        dreamwidth_usernames.render_user_links(bad_input_str)

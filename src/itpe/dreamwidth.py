@@ -110,29 +110,3 @@ def render_user_links(name_str):
         components = (_single_user_link(name.strip())
                       for name in name_str.split(','))
         return ', '.join(c for c in components if c)
-
-
-class UserLinkTests(unittest.TestCase):
-
-    def setUp(self):
-        self.cprint = patch('termcolor.cprint', new=MagicMock())
-        self.cprint.start()
-
-    def tearDown(self):
-        self.cprint.stop()
-
-    def test_invalid_strings(self):
-        """Strings with >1 slash raise a ValueError."""
-        for bad_string in ['parrot/budgie/parakeet', 'cat///mouse']:
-            with self.assertRaises(ValueError):
-                render_user_links(bad_string)
-
-    def test_invalid_prefixes(self):
-        """Strings with an unknown site prefix raise a ValueError."""
-        for bad_string in ['nope/turtle', 'bad/tortoise', '/reptile']:
-            with self.assertRaises(ValueError):
-                render_user_links(bad_string)
-
-
-if __name__ == '__main__':
-    unittest.main()
