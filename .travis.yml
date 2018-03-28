@@ -2,9 +2,6 @@ language: python
 sudo: false
 
 python:
-  - 2.7
-  - 3.4
-  - 3.5
   - 3.6
 
 cache:
@@ -14,6 +11,10 @@ cache:
 env:
   matrix:
     - TASK=lint
+    - TASK=py27
+    - TASK=py34
+    - TASK=py35
+    - TASK=py36
 
 script:
   - tox -e $TASK
