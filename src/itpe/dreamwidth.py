@@ -20,9 +20,6 @@ This file contains a function for turning these templae strings into
 the full <user> tags.
 """
 
-import unittest
-from unittest.mock import patch, MagicMock
-
 from jinja2 import Template
 import termcolor
 
