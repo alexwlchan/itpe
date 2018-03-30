@@ -1,6 +1,15 @@
 Release History
 ===============
 
+2017.2 (release date: 2018-01-03)
+---------------------------------
+
+This releases fixes a bug that was found while building the 2017 masterpost:
+
+-  Don't throw a UnicodeDecodeError if there are unusual characters in the
+   input CSV.
+
+
 2017.1 (release date: 2018-01-02)
 ---------------------------------
 

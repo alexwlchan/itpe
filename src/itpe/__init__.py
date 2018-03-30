@@ -76,7 +76,7 @@ def get_podfics(input_file):
     """Read a CSV file and return a list of Podfic instances."""
     podfics = []
 
-    with open(input_file) as csvfile:
+    with open(input_file, encoding='utf-8') as csvfile:
         itpereader = csv.reader(csvfile, delimiter=',')
 
         # Skip the first row, which only contains headings
