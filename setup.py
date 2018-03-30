@@ -18,7 +18,7 @@ long_description = codecs.open(README, encoding='utf-8').read()
 
 setup(
     name='itpe',
-    version='2016.0',
+    version='2017.2',
     description='Scripts for generating the master post for ITPE (the Informal Twitter Podfic Exchange)',
     long_description=long_description,
     url='https://github.com/alexwlchan/itpe',
@@ -40,6 +40,7 @@ setup(
     ],
     packages=find_packages(SOURCE),
     package_dir={'': SOURCE},
+    include_package_data=True,
     install_requires=[
         'docopt',
         'jinja2',

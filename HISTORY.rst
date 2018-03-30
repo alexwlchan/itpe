@@ -1,6 +1,24 @@
 Release History
 ===============
 
+2017.2 (release date: 2018-01-03)
+---------------------------------
+
+This releases fixes a bug that was found while building the 2017 masterpost:
+
+-  Don't throw a UnicodeDecodeError if there are unusual characters in the
+   input CSV.
+
+
+2017.1 (release date: 2018-01-02)
+---------------------------------
+
+This releases fixes a bug that was found while building the 2017 masterpost:
+
+-  Actually include the template ``podfic-template.html``.  This was present
+   if you downloaded the repo and worked from that, but not if you installed
+   through pip.
+
 2016.0 (release date: 2017-01-01)
 ---------------------------------
 
