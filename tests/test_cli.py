@@ -40,3 +40,8 @@ def test_errors_are_helpful(example_file, argv, expected_message):
 def test_width_arg_is_converted_to_int():
     parsed_args = cli.get_args(['--input', 'tox.ini', '--width', '50'])
     assert parsed_args['--width'] == 50
+
+
+def test_guesses_sensible_output_if_not_provided(example_file):
+    parsed_args = cli.get_args(['--input', 'example.csv'])
+    assert parsed_args['--output'] == 'example.html'

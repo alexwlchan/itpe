@@ -25,6 +25,9 @@ from schema import Schema, And, Or, Use, SchemaError
 def get_args(argv):
     args = docopt.docopt(doc=__doc__, argv=argv)
 
+    if args['--output'] is None:
+        args['--output'] = os.path.splitext(args['--input'])[0] + '.html'
+
     schema = Schema({
         # These two keys get handled by docopt, so we just need to validate
         # that they've not been passed.
@@ -35,16 +38,13 @@ def get_args(argv):
         # file, and we shouldn't try to overwrite an existing file.  At some
         # point it might be nice to allow overriding the output rule with
         # '--force', but that adds unnecessary complication.
-        '--input': Use(
+        '--input': And(
             lambda f: open(f, 'r'),
             error='--input=%r should be readable' % args['--input']
         ),
-        '--output': Or(
-            None,
-            And(
-                not os.path.exists,
-                error='--output=%r already exists!' % args['--output']
-            )
+        '--output': And(
+            lambda f: not os.path.exists(f),
+            error='--output=%r already exists!' % args['--output']
         ),
         '--width': Or(
             None,
