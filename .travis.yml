@@ -23,7 +23,7 @@ env:
       env: TOXENV=36
 
 script:
-  - tox
+  - tox -e "$TOXENV"
 
 install:
   - "pip install -U pip setuptools"
