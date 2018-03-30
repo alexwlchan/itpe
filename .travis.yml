@@ -14,13 +14,13 @@ matrix:
     - python: 3.6
       env: TOXENV=lint
     - python: 2.7
-      env: TOXENV=27
+      env: TOXENV=py27
     - python: 3.4
-      env: TOXENV=34
+      env: TOXENV=py34
     - python: 3.5
-      env: TOXENV=35
+      env: TOXENV=py35
     - python: 3.6
-      env: TOXENV=36
+      env: TOXENV=py36
 
 script:
   - tox
