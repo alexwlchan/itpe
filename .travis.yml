@@ -1,19 +1,29 @@
 language: python
 sudo: false
 
-python:
-  - "3.5"
+branches:
+  only:
+    - master
 
 cache:
   directories:
     - $HOME/.cache/pip
 
-env:
-  matrix:
-    - TASK=lint
+matrix:
+  include:
+    - python: 3.6
+      env: TOXENV=lint
+    - python: 2.7
+      env: TOXENV=py27
+    - python: 3.4
+      env: TOXENV=py34
+    - python: 3.5
+      env: TOXENV=py35
+    - python: 3.6
+      env: TOXENV=py36
 
 script:
-  - tox -e $TASK
+  - tox
 
 install:
   - "pip install -U pip setuptools"
