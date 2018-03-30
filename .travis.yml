@@ -9,8 +9,8 @@ cache:
   directories:
     - $HOME/.cache/pip
 
-env:
-  matrix:
+matrix:
+  include:
     - python: 3.6
       env: TOXENV=lint
     - python: 2.7
@@ -23,7 +23,7 @@ env:
       env: TOXENV=36
 
 script:
-  - tox -e "$TOXENV"
+  - tox
 
 install:
   - "pip install -U pip setuptools"
