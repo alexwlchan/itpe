@@ -16,14 +16,13 @@ Options:
 """
 
 import os
-import sys
 
 import docopt
-from schema import Schema, And, Or, Use, SchemaError
+from schema import Schema, And, Or, Use
 
 
-def get_args(argv):
-    args = docopt.docopt(doc=__doc__, argv=argv)
+def get_args(argv, *args, **kwargs):
+    args = docopt.docopt(doc=__doc__, argv=argv, *args, **kwargs)
 
     if args['--output'] is None:
         args['--output'] = os.path.splitext(args['--input'])[0] + '.html'
@@ -51,7 +50,9 @@ def get_args(argv):
             And(
                 Use(int),
                 lambda w: w > 0,
-                error='--width=%r should be a positive integer' % args['--width']
+                error=(
+                    '--width=%r should be a positive integer' %
+                    args['--width'])
             )
         ),
     })

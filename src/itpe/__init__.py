@@ -1,28 +1,13 @@
-#!/usr/bin/python
-# encoding = utf-8
-"""
-Generate the HTML for the #ITPE master post.
-
-Usage:
-  itpe_generator.py --input <INPUT> [--output <OUTPUT>] [--width=<width>]
-  itpe_generator.py (-h | --help)
-  itpe_generator.py --version
-
-Options:
-  -h --help        Show this screen.
-  --input          CSV file containing the ITPE data.
-  --output         HTML file for writing the generated HTML.
-  --width=<width>  Width of the cover art in px [default: 500px].
-
-"""
+# -*- encoding: utf-8
 
 import collections
 import csv
-import os
-import re
+import sys
 
 from jinja2 import Environment, PackageLoader
+from schema import SchemaError
 
+from .cli import get_args
 from .dreamwidth import render_user_links
 
 
@@ -99,37 +84,29 @@ def get_podfics(input_file):
 
 
 def main():
-
-    from docopt import docopt
-    arguments = docopt(__doc__, version="ITPE 2015.1")
-
-    # Strip everything except the digits from the width option, then append
-    # 'px' for the CSS attribute
-    arguments['--width'] = re.sub(r'[^0-9]', '', arguments['--width']) + "px"
-
-    # If the caller doesn't give us an output path, guess one based on the
-    # input file
-    if arguments['<OUTPUT>'] is None:
-        basepath, _ = os.path.splitext(arguments['<INPUT>'])
-        arguments['<OUTPUT>'] = basepath + '.html'
+    try:
+        args = get_args(sys.argv[1:], version='ITPE 2017.3')
+    except SchemaError as err:
+        import sys
+        sys.exit(err)
 
     template = get_jinja2_template()
 
     # Get a list of podfics from the input CSV file
-    podfics = get_podfics(arguments['<INPUT>'])
+    podfics = get_podfics(args['<INPUT>'])
 
     # Turn those podfics into HTML
     podfic_html = (
-        template.render(podfic=podfic, width=arguments['--width'])
+        template.render(podfic=podfic, width=args['--width'] + 'px')
         for podfic in podfics
     )
 
     # Write the output HTML, with a <br /> between items to add space
     # in the rendered page.
-    with open(arguments['<OUTPUT>'], 'w') as outfile:
+    with open(args['--output'], 'w') as outfile:
         outfile.write('\n<br />\n'.join(podfic_html))
 
-    print("HTML has been written to %s." % arguments['<OUTPUT>'])
+    print("HTML has been written to %s." % args['--output'])
 
 
 if __name__ == '__main__':
