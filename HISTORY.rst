@@ -1,6 +1,12 @@
 Release History
 ===============
 
+2018.1 (release data: 2018-12-27)
+---------------------------------
+
+This is an attempt to release the code that *should* have been present
+in the 2017.2 release.
+
 2017.2 (release date: 2018-01-03)
 ---------------------------------
 
