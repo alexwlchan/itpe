@@ -24,6 +24,7 @@ import re
 from jinja2 import Environment, PackageLoader
 
 from .dreamwidth import render_user_links
+from .jinja_helpers import condense_into_single_line
 
 
 # Headings for the CSV fields. These don't have to exactly match the spelling/
@@ -48,15 +49,6 @@ HEADINGS = [
 ]
 
 Podfic = collections.namedtuple('Podfic', HEADINGS)
-
-
-def condense_into_single_line(text):
-    """
-    Remove all the newlines from a block of text, compressing multiple
-    lines of HTML onto a single line.  Used as a Jinja2 filter.
-    """
-    lines = [line.lstrip() for line in text.split('\n')]
-    return ''.join(lines)
 
 
 def get_jinja2_template():
