@@ -1,0 +1,2 @@
+from_user,for_user,cover_art,cover_artist,editor,title,title_link,authors,fandom,pairing,warnings,length,mp3_link,podbook_link,podbook_compiler
+tw/from_user,dw/for_user,https://example.org/cover_art.jpg,dw/cover_artist,dw/editor,My Great Title,https://ao3.org/my_fic,tw/author,Harry Potter,ron/hermione,no warnings,1:30,https://example.org/file.mp3,https://example.org/file.m4b,dw/podbook_compiler,an_extra_column,another_extra_column
