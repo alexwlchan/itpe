@@ -21,10 +21,7 @@ import csv
 import os
 import re
 
-from jinja2 import Environment, PackageLoader
-
-from .dreamwidth import render_user_links
-from .jinja_helpers import condense_into_single_line
+from .jinja_helpers import get_jinja2_template
 
 
 # Headings for the CSV fields. These don't have to exactly match the spelling/
@@ -49,19 +46,6 @@ HEADINGS = [
 ]
 
 Podfic = collections.namedtuple('Podfic', HEADINGS)
-
-
-def get_jinja2_template():
-    """Set up the Jinja2 environment."""
-    env = Environment(loader=PackageLoader('itpe', 'templates'),
-                      trim_blocks=True)
-
-    env.filters['condense'] = condense_into_single_line
-    env.filters['userlinks'] = render_user_links
-
-    template = env.get_template('podfic_template.html')
-
-    return template
 
 
 def get_podfics(input_file):

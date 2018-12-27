@@ -5,7 +5,7 @@ from hypothesis import given
 from hypothesis.strategies import text
 import pytest
 
-from itpe.jinja_helpers import condense_into_single_line
+from itpe.jinja_helpers import condense_into_single_line, get_jinja2_template
 
 @given(text())
 def test_condense_into_single_line_removes_newlines(xs):
@@ -26,3 +26,7 @@ def test_condense_into_single_line_is_stable(xs):
 ])
 def test_condense_into_single_line_strips_from_left(text, expected_output):
     assert condense_into_single_line(text) == expected_output
+
+
+def test_can_get_template():
+    get_jinja2_template()
