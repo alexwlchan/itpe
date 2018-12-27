@@ -1,12 +1,22 @@
 Release History
 ===============
 
-2018.2 (release data: 2018-12-27)
+2018.4 (release date: 2018-12-27)
+---------------------------------
+
+Another hotfix for Python 2 support.
+
+2018.3 (release date: 2018-12-27)
+---------------------------------
+
+Another attempt to handle non-ASCII characters in Python 2.
+
+2018.2 (release date: 2018-12-27)
 ---------------------------------
 
 A failed release to fix a Python 2 Unicode bug.
 
-2018.1 (release data: 2018-12-27)
+2018.1 (release date: 2018-12-27)
 ---------------------------------
 
 This is an attempt to release the code that *should* have been present

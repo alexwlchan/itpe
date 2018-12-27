@@ -76,13 +76,16 @@ def get_podfics(input_file):
     """Read a CSV file and return a list of Podfic instances."""
     podfics = []
 
-    with open(input_file, encoding='utf-8') as csvfile:
+    with open(input_file, "rb") as csvfile:
         itpereader = csv.reader(csvfile, delimiter=',')
 
         # Skip the first row, which only contains headings
         next(itpereader)
 
         for idx, row in enumerate(itpereader):
+            row = [
+                entry.decode("utf8") for entry in row
+            ]
             print("Reading row %d..." % idx)
 
             # If we pass the incorrect number of arguments to Podfic,
@@ -101,7 +104,7 @@ def get_podfics(input_file):
 def main():
 
     from docopt import docopt
-    arguments = docopt(__doc__, version="ITPE 2015.1")
+    arguments = docopt(__doc__, version="ITPE 2018.2")
 
     # Strip everything except the digits from the width option, then append
     # 'px' for the CSS attribute
@@ -126,8 +129,10 @@ def main():
 
     # Write the output HTML, with a <br /> between items to add space
     # in the rendered page.
-    with open(arguments['<OUTPUT>'], 'w') as outfile:
-        outfile.write('\n<br />\n'.join(podfic_html))
+    html_to_write = u'\n<br />\n'.join(podfic_html)
+    html_bytes = html_to_write.encode("utf8")
+    with open(arguments['<OUTPUT>'], "wb") as outfile:
+        outfile.write(html_bytes)
 
     print("HTML has been written to %s." % arguments['<OUTPUT>'])
 
