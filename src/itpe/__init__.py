@@ -80,6 +80,12 @@ def get_podfics(input_file):
     return podfics
 
 
+def generate_html(all_podfics, width):
+    template = get_jinja2_template()
+    for podfic in all_podfics:
+        yield template.render(podfic=podfic, width=width)
+
+
 def main():
 
     from docopt import docopt
@@ -95,16 +101,11 @@ def main():
         basepath, _ = os.path.splitext(arguments['<INPUT>'])
         arguments['<OUTPUT>'] = basepath + '.html'
 
-    template = get_jinja2_template()
-
     # Get a list of podfics from the input CSV file
-    podfics = get_podfics(arguments['<INPUT>'])
+    all_podfics = get_podfics(arguments['<INPUT>'])
 
     # Turn those podfics into HTML
-    podfic_html = (
-        template.render(podfic=podfic, width=arguments['--width'])
-        for podfic in podfics
-    )
+    podfic_html = generate_html(all_podfics=all_podfics, width=arguments['--width'])
 
     # Write the output HTML, with a <br /> between items to add space
     # in the rendered page.
@@ -116,5 +117,5 @@ def main():
     print("HTML has been written to %s." % arguments['<OUTPUT>'])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":  # pragma: no cover
     main()

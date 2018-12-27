@@ -4,4 +4,7 @@ include =
     **/.tox/*/lib/*/site-packages/itpe/*.py
 
 [report]
+fail_under = 100
 show_missing = True
+exclude_lines =
+    pragma: no cover
