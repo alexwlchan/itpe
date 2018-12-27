@@ -33,3 +33,10 @@ def test_can_get_podfics():
 def test_wrong_number_of_columns_is_valueerror(path):
     with pytest.raises(ValueError):
         get_podfics(os.path.join("tests", path))
+
+
+def test_can_read_csv_with_utf8():
+    r = get_podfics("tests/example_with_utf8.csv")
+    assert len(r) == 2
+    assert r[1].from_user == u"tw/fröm_user"
+    assert r[1].for_user == u"dw/for_usér"
