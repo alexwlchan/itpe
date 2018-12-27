@@ -1,6 +1,11 @@
 Release History
 ===============
 
+2018.2 (release data: 2018-12-27)
+---------------------------------
+
+A failed release to fix a Python 2 Unicode bug.
+
 2018.1 (release data: 2018-12-27)
 ---------------------------------
 
