@@ -59,21 +59,22 @@ def csv_reader(path):
             yield row
 
 
+def get_podfics_from_rows(rows):
+    for idx, r in enumerate(rows):
+        try:
+            yield Podfic(*r)
+        except TypeError:
+            raise ValueError("Row %d has the wrong number of entries" % idx)
+
+
 def get_podfics(input_file):
     """Read a CSV file and return a list of Podfic instances."""
     podfics = []
 
-    for idx, row in enumerate(csv_reader(input_file)):
+    rows = csv_reader(input_file)
+
+    for idx, podfic in enumerate(get_podfics_from_rows(rows)):
         print("Reading row %d..." % idx)
-
-        # If we pass the incorrect number of arguments to Podfic,
-        # it throws a TypeError.
-        try:
-            podfic = Podfic(*row)
-        except TypeError:
-            raise ValueError(
-                "Row %d has the wrong number of entries" % idx)
-
         podfics.append(podfic)
 
     return podfics
