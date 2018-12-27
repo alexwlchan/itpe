@@ -16,10 +16,12 @@ Options:
 
 """
 
+import codecs
 import collections
-import csv
 import os
 import re
+
+import csv23
 
 from .jinja_helpers import get_jinja2_template
 
@@ -48,31 +50,31 @@ HEADINGS = [
 Podfic = collections.namedtuple('Podfic', HEADINGS)
 
 
+def csv_reader(path):
+    with csv23.open_reader(path, encoding="utf-8") as reader:
+        # Skip the first row, which only contains headings.
+        next(reader)
+
+        for row in reader:
+            yield row
+
+
 def get_podfics(input_file):
     """Read a CSV file and return a list of Podfic instances."""
     podfics = []
 
-    with open(input_file, "rb") as csvfile:
-        itpereader = csv.reader(csvfile, delimiter=',')
+    for idx, row in enumerate(csv_reader(input_file)):
+        print("Reading row %d..." % idx)
 
-        # Skip the first row, which only contains headings
-        next(itpereader)
+        # If we pass the incorrect number of arguments to Podfic,
+        # it throws a TypeError.
+        try:
+            podfic = Podfic(*row)
+        except TypeError:
+            raise ValueError(
+                "Row %d has the wrong number of entries" % idx)
 
-        for idx, row in enumerate(itpereader):
-            row = [
-                entry.decode("utf8") for entry in row
-            ]
-            print("Reading row %d..." % idx)
-
-            # If we pass the incorrect number of arguments to Podfic,
-            # it throws a TypeError.
-            try:
-                podfic = Podfic(*row)
-            except TypeError:
-                raise ValueError(
-                    "Row %d has the wrong number of entries" % idx)
-
-            podfics.append(podfic)
+        podfics.append(podfic)
 
     return podfics
 

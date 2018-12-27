@@ -42,6 +42,7 @@ setup(
     package_dir={'': SOURCE},
     include_package_data=True,
     install_requires=[
+        "csv23<0.2",
         'docopt',
         'jinja2',
         'termcolor',
