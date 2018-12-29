@@ -16,7 +16,6 @@ Options:
 
 """
 
-import codecs
 import collections
 import os
 import re
@@ -105,7 +104,10 @@ def main():
     all_podfics = get_podfics(arguments['<INPUT>'])
 
     # Turn those podfics into HTML
-    podfic_html = generate_html(all_podfics=all_podfics, width=arguments['--width'])
+    podfic_html = generate_html(
+        all_podfics=all_podfics,
+        width=arguments['--width']
+    )
 
     # Write the output HTML, with a <br /> between items to add space
     # in the rendered page.
