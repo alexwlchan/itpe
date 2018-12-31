@@ -68,8 +68,11 @@
 
 
 <table>  <!-- Metadata for {{ podfic.title }} -->
-{% set display_text = '<a href="{0}">{1}</a>'.format(podfic.title_link, podfic.title) %}
-{{ optional_metadata("Title", metadata_value=podfic.title, display_text=display_text) }}
+{%- if podfic.title %}
+  <tr>
+    <td><strong>Title:</strong></td>
+    <td><a href="{{ podfic.title_link }}">{{ podfic.title }}</a></td>
+  </tr>{% endif %}
 {% set metadata_value = podfic.authors|userlinks %}
 {{ optional_metadata("Authors",  podfic.authors|userlinks) }}
 {{ optional_metadata("Fandom",   podfic.fandom) }}
