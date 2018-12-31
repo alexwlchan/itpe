@@ -35,7 +35,7 @@
 
   {% filter condense %}
     {% if podfic.cover_art %}
-      <div style="width: {{ width }} !important;">
+      <div style="max-width: {{ width }} !important;">
         <img src="{{ podfic.cover_art }}" style="max-width: 100% !important">
       </div>
     {% endif %}
