@@ -1,6 +1,17 @@
 Release History
 ===============
 
+2019.1 (release date: 2018-12-31)
+---------------------------------
+
+Now the `2018 masterlist <https://amplificathon.dreamwidth.org/3201231.html>`_
+is posted, this release adds two bugfixes in anticipation of 2019, as requested
+by the lovely mods:
+
+-  You can now specify a Tumblr handle as ``tm/username``, in addition to the
+   existing format.
+-  Cover art won't overflow off the screen on narrow screens (i.e. phones).
+
 2018.4 (release date: 2018-12-27)
 ---------------------------------
 

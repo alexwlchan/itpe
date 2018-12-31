@@ -88,7 +88,7 @@ def generate_html(all_podfics, width):
 def main():
 
     from docopt import docopt
-    arguments = docopt(__doc__, version="ITPE 2018.2")
+    arguments = docopt(__doc__, version="ITPE 2019.1")
 
     # Strip everything except the digits from the width option, then append
     # 'px' for the CSS attribute
