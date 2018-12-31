@@ -27,6 +27,7 @@ from itpe import dreamwidth as dreamwidth_usernames
     ('tw/snake', '<user name=snake site=twitter.com>'),
     ('ao3/newt', '<user name=newt site=archiveofourown.org>'),
     ('tum/iguana', '<user name=iguana site=tumblr.com>'),
+    ("tm/iguana", "<user name=iguana site=tumblr.com>"),
 
     # Comma-separated strings render correctly
     ('lion, ff/tiger', '<user name=lion>, <user name=tiger site=fanfiction.net>'),

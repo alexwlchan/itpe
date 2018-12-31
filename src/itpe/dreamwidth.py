@@ -44,7 +44,11 @@ SITE_PREFIXES = {
     'rvl':  'ravelry.com',
     'tw':   'twitter.com',
     'tum':  'tumblr.com',
-    'wp':   'wordpress.com'
+    'wp':   'wordpress.com',
+
+    # Added as a request for the mods as an alt; they often forget the
+    # abbreviation is "tum".
+    "tm": "tumblr.com",
 }
 
 USERLINK = Template("<user name={{ name }}{% if site and "
