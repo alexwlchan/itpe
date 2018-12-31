@@ -7,22 +7,27 @@ Podfic Exchange).
 Installation
 ------------
 
-Install these scripts by running:
+You need to install Python first.  You can download Python:
+
+*  from the `official Python website <https://www.python.org/downloads/>`_
+*  using `conda <https://conda.io/docs/user-guide/install/index.html#id4>`_
+
+There are other ways to install Python, but these are probably the easiest
+if you don't already have a working Python installation.
+
+You may be asked "Python 2.7 or Python 3"?  Either should be fine -- these
+scripts should work with any version of Python that you can install in 2018.
+
+Once you have Python, install the scripts by running:
 
 .. code-block:: console
 
    pip install itpe
 
-or:
-
-.. code-block:: console
-
-   pipsi install itpe
-
 Usage
 -----
 
-For the 2016 version, run ``itpe --help`` to get a usage message.
+Once the scripts are installed, run ``itpe --help`` to get a usage message.
 
 Support
 -------
